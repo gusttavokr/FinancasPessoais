@@ -120,9 +120,6 @@ class Receita(models.Model):
                 data = None
         else:
             data = self.dataCredito
-
-        if data and data > date.today():
-            erros['dataCredito'] = "A data de nascimento não pode ser no futuro."
         
         if erros:
             raise ValidationError(erros)
@@ -157,11 +154,6 @@ class Despesa(models.Model):
             except ValueError:
                 erros['dataDebito'] = "Formato de data de crédito inválido. Use AAAA-MM-DD."
                 data = None
-        else:
-            data = self.dataDebito
-
-        if data and data > date.today():
-            erros['dataDebito'] = "A data de nascimento não pode ser no futuro."
         
         if erros:
             raise ValidationError(erros)
