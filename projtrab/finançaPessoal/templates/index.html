@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="bg-gray-100">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+            <div class="text-center">
+                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo"
+                    class="mx-auto h-12 w-auto">
+                <h2 class="mt-6 text-3xl font-bold text-gray-900">Meus balancetes</h2>
+                <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
+            </div>
+
+            <div class="flex items-center justify-center">
+                <div class=" max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+                    <div class="text-center">
+                        <h2 class="mt-6 text-3xl font-bold text-gray-900"> nome </h2>
+                        <p class="mt-2 text-sm text-gray-600"> saldo </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+<div class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
+  <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-8">
+    <!-- Cabeçalho -->
+    <div class="text-center">
+      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo" class="mx-auto h-12 w-auto">
+      <h1 class="mt-4 text-3xl font-extrabold text-gray-900">Meus Balancetes</h1>
+      <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
+    </div>
+
+    <!-- Informações do usuário -->
+    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-inner">
+      <h2 class="text-xl font-semibold text-gray-800">João da Silva</h2>
+      <p class="mt-2 text-lg text-green-600 font-medium">Saldo: R$ 5.320,00</p>
+    </div>
+  </div>
+</div>
