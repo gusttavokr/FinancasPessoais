@@ -1,44 +1,53 @@
 {% extends 'base.html' %}
 
+{% block title %} Página inicial {% endblock %}
+
 {% block content %}
 
 <div class="bg-gray-100">
-    <div class="flex items-center justify-center min-h-screen">
-        <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-            <div class="text-center">
-                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo"
-                    class="mx-auto h-12 w-auto">
-                <h2 class="mt-6 text-3xl font-bold text-gray-900">Meus balancetes</h2>
-                <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
-            </div>
+  <div class="flex items-center justify-start px-20 min-h-screen">
+    <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
 
-            <div class="flex items-center justify-center">
-                <div class=" max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-                    <div class="text-center">
-                        <h2 class="mt-6 text-3xl font-bold text-gray-900"> nome </h2>
-                        <p class="mt-2 text-sm text-gray-600"> saldo </p>
-                    </div>
+      <div class="text-center">
+        <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo"
+          class="mx-auto h-12 w-auto">
+        <h2 class="mt-6 text-3xl font-bold text-gray-900">Meus balancetes</h2>
+        <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
+      </div>
+
+      <!-- Carrossel ajustado -->
+      <div class="relative">
+        <div class="flex overflow-x-auto pb-4 -mx-4 px-4">
+          <div class="flex space-x-4">
+            {% for b in balancetes %}
+            <div class="flex-shrink-0 w-64">
+              <div class="p-6 space-y-4 bg-white rounded-lg shadow-md">
+                <div class="text-center">
+                  <h2 class="text-xl font-bold text-gray-900 break-words">{{ b.nome }}</h2>
+                  <p class="mt-2 text-sm text-gray-600">Valor investido: {{ b.saldo }}</p>
                 </div>
+              </div>
             </div>
+            {% endfor %}
+          </div>
         </div>
-    </div>
-</div>
+      </div>
 
-{% endblock %}
+      <!-- Botão fora do carrossel, centralizado -->
+      <div class="text-center">
+        <a href="{% url 'meusBalancetes' %}"
+          class="inline-block rounded-md bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          Ver todos
+        </a>
+        <a href="#"
+          class="inline-block rounded-md bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          Criar novo
+        </a>
+      </div>
 
-<div class="bg-gray-100 min-h-screen flex items-center justify-center px-4">
-  <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-8">
-    <!-- Cabeçalho -->
-    <div class="text-center">
-      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo" class="mx-auto h-12 w-auto">
-      <h1 class="mt-4 text-3xl font-extrabold text-gray-900">Meus Balancetes</h1>
-      <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
-    </div>
-
-    <!-- Informações do usuário -->
-    <div class="bg-gray-50 rounded-lg p-6 text-center shadow-inner">
-      <h2 class="text-xl font-semibold text-gray-800">João da Silva</h2>
-      <p class="mt-2 text-lg text-green-600 font-medium">Saldo: R$ 5.320,00</p>
     </div>
   </div>
 </div>
+
+
+{% endblock %}

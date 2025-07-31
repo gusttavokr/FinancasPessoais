@@ -47,7 +47,7 @@ class Usuario(User):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.Nome} - {self.cpf} - {self.endereco}'
+        return f'{self.id} - {self.Nome} - {self.cpf} - {self.endereco}'
 
     class Meta:
         verbose_name_plural = "Usuarios"

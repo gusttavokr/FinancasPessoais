@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-from . import views
+from .views.views_index import (ListarBalancetes)
 
 urlpatterns = [
     # path("", views.login, name="index")
-    path("", views.index, name="index")
+    path("", ListarBalancetes.as_view(), name="index"),
+    path("balancetes/", ListarBalancetes.as_view(), name="meusBalancetes")
 ]
