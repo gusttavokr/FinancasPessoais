@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %} Página inicial {% endblock %}
+
+{% block content %}
+
+<div class="bg-gray-100">
+    <div class="flex items-center justify-start px-20 min-h-screen">
+        <!-- Card principal com altura fixa e overflow -->
+        <div class="w-full p-8 bg-white rounded-lg shadow-md flex flex-col" style="height: 70vh;">
+
+
+            <!-- <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo"
+                class="h-12 w-auto"> -->
+            <div class="flex justify-end">
+                <a href="#"
+                    class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 z-10">
+                    
+                    <!-- Ícone de + -->
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                    </svg>
+
+                    Registrar lançamento
+                </a>
+            </div>
+
+
+            <h2 class="mt-6 text-3xl font-bold text-gray-900">{{ balancete.nome }}</h2>
+            <h2 class="mt-2 text-2xl font-bold text-indigo-600">R$ {{ balancete.saldo }}</h2>
+            <p class="mt-2 text-sm text-gray-600">{{ balancete.descricao }}</p>
+
+            <div class="mt-6 overflow-y-auto flex-1 space-y-4">
+                {% for r in receitas %}
+                <div class="p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+                    <h2 class="text-xl font-bold text-gray-900 break-words">Data de crédito: {{ r.dataCredito }}</h2>
+                    <h2 class="text-xl font-bold text-indigo-600 break-words">Valor creditado: R$ {{ r.valor }}</h2>
+                    <p class="mt-2 text-sm text-gray-600">{{ r.descricao }}</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+                    <h2 class="text-xl font-bold text-gray-900 break-words">Data de crédito: {{ r.dataCredito }}</h2>
+                    <h2 class="text-xl font-bold text-indigo-600 break-words">Valor creditado: R$ {{ r.valor }}</h2>
+                    <p class="mt-2 text-sm text-gray-600">{{ r.descricao }}</p>
+                </div>
+                {% empty %}
+                <p>Sem receitas cadastradas.</p>
+                {% endfor %}
+            </div>
+
+            <!-- <div class="flex justify-end mt-6">
+                <a href="#"
+                    class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 z-10">
+                    Criar novo
+                </a>
+            </div> -->
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

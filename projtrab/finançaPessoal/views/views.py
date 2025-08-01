@@ -6,10 +6,16 @@ from .VAR import USER_ID
 # def login(request):
 #     return render(request, "login.html")
 
-class ListarBalancetes(View):
+class Index(View):
     def get(self, request):
         user_id = USER_ID
         service = service_balancete.Service_Balancete()
 
         context = service.listar_balancete(user_id)
-        return render(request, "meusBalancetes.html", context)
+        return render(request, "index.html", context)
+
+class verBalancete(View):
+    def get(self, request, pk):
+        service = service_balancete.Service_Balancete()
+        context = service.buscarBalancete(pk)
+        return render(request, "verBalancete.html", context)
