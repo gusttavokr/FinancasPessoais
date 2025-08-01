@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from ..services import service_balancete
 from .VAR import USER_ID
@@ -15,6 +15,21 @@ class Index(View):
         context = service.listar_balancete(user_id)
         context["form"] = BalanceteForm()
         return render(request, "index.html", context)
+
+
+class criarBalancete(View):
+    def post(self, request):
+        user_id = USER_ID
+
+        nome = request.POST.get("nome")
+        valor = request.POST.get("valor")
+        descricao = request.POST.get("descricao")
+
+        service = service_balancete.Service_Balancete()
+        balancete = service.criarBalancete(nome, valor, descricao, user_id)
+
+        return redirect("verBalancete", pk=balancete.pk)  
+
 
 class verBalancete(View):
     def get(self, request, pk):

@@ -1,4 +1,6 @@
 from ..models import Usuario, Balancete, Receita
+from datetime import date
+from django.core.exceptions import ValidationError
 
 class Service_Balancete:
     @classmethod
@@ -21,3 +23,24 @@ class Service_Balancete:
             "balancete" : balancete,
             "receitas" : receita
         }
+    
+    @classmethod
+    def criarBalancete(cls, nome, saldo, descricao, user_id:int):
+        dataCriacao = date.today()
+        usuario = Usuario.objects.get(id = user_id)
+
+        balancete = Balancete(
+            usuario=usuario,
+            nome=nome,
+            saldo=saldo,
+            dataCriacao=dataCriacao,
+            descricao=descricao
+        )
+
+        try:
+            balancete.full_clean()
+        except ValidationError as e:
+            raise e
+
+        balancete.save()
+        return balancete

@@ -1,5 +1,5 @@
 from django import forms
-from datetime import date, datetime
+from datetime import date
 from django.core.exceptions import ValidationError
 
 class BalanceteForm(forms.Form):
@@ -8,18 +8,16 @@ class BalanceteForm(forms.Form):
     nome = forms.CharField(
         max_length=500,
         widget=forms.TextInput(attrs={
-            'class': 'input',
             'placeholder': 'Digite o nome do balancete:',
-            'class': 'w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
+            'class': 'input w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
         }),
         label="Nome do balancete"
     )
 
     valor = forms.FloatField(
         widget=forms.NumberInput(attrs={
-            'class': 'input',
             'placeholder': 'Informe a meta de valor do balancete:',
-            'class': 'w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
+            'class': 'input w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
         }),
         label="Valor do balancete"
     )
@@ -27,9 +25,8 @@ class BalanceteForm(forms.Form):
     descricao = forms.CharField(
         required=False,
         widget=forms.TextInput(attrs={
-            'class': 'input',
+            'class': 'input w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
             'placeholder': 'Digite a descrição do balancete:',
-            'class': 'w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
         }),
         label="Descrição do balancete"
     )

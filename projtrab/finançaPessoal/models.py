@@ -66,6 +66,9 @@ class Balancete(models.Model):
         erros = {}
         if len(self.nome) < 3:
             erros['nome'] = "O nome deve ter mais de 3 caracteres"
+        
+        if (self.saldo <= 0):
+            erros['saldo'] = "O balancete precisa de um valor maior que 0!"
 
         if isinstance(self.dataCriacao, str):
             try:
