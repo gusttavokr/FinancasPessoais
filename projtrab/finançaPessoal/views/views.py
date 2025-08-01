@@ -2,16 +2,18 @@ from django.shortcuts import render
 from django.views import View
 from ..services import service_balancete
 from .VAR import USER_ID
+from ..forms import BalanceteForm
 
-# def login(request):
-#     return render(request, "login.html")
+class Login(View):
+    def get(self, request):
+        return render(request, "login.html")
 
 class Index(View):
     def get(self, request):
         user_id = USER_ID
         service = service_balancete.Service_Balancete()
-
         context = service.listar_balancete(user_id)
+        context["form"] = BalanceteForm()
         return render(request, "index.html", context)
 
 class verBalancete(View):
