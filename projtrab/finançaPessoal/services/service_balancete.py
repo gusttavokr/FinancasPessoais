@@ -2,7 +2,7 @@ from ..models import Usuario, Balancete, Receita
 
 class Service_Balancete:
     @classmethod
-    def listar_balancete(cls, user_id: int, ):
+    def listar_balancete(cls, user_id: int):
         usuario = Usuario.objects.get(id = user_id)
 
         balancetes = Balancete.objects.filter(usuario = usuario)
