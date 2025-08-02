@@ -2,11 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from ..services import service_balancete
 from .VAR import USER_ID
-from ..forms import BalanceteForm
-
-class Login(View):
-    def get(self, request):
-        return render(request, "login.html")
+from ..forms.formsBalancete import BalanceteForm
 
 class Index(View):
     def get(self, request):
