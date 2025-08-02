@@ -57,7 +57,7 @@ class Usuario(User):
 class Balancete(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='balancetes')
     nome = models.CharField(max_length=500)
-    saldo = models.FloatField(default=0)
+    saldo = models.DecimalField(default=0, decimal_places = 2, max_digits=12)
     dataCriacao = models.DateField(default=timezone.now)
     descricao = models.TextField(blank=True, null=True)
 

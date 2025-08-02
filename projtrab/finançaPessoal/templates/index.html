@@ -9,38 +9,45 @@
 
     <!-- Lista de Balancetes -->
     <div class="bg-white rounded-lg shadow-md p-8 flex flex-col w-full lg:w-1/2" style="height: 70vh;">
-      <!-- Logo -->
-      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo" class="h-12 w-auto">
+      
+      <div class="flex py-2 items-baseline justify-between">
+        <!-- Título e descrição -->
+        <div>
+          <h2 class="mt-6 text-3xl font-bold text-gray-900">Meus balancetes</h2>
+          <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
+        </div>
+        <!-- Logo -->
+        <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo"
+          class="h-12 w-auto">
+      </div>
 
-      <!-- Título e descrição -->
-      <h2 class="mt-6 text-3xl font-bold text-gray-900">Meus balancetes</h2>
-      <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
-
-      <!-- Lista com scroll -->
       <div class="mt-6 overflow-y-auto flex-1 space-y-4 pr-2" style="max-height: calc(70vh - 140px);">
         {% for b in balancetes %}
-          <a href="{% url 'verBalancete' b.id %}" class="block group">
-            <div class="p-4 bg-white rounded-lg shadow border border-neutral-300 hover:shadow-md transition-shadow group-hover:border-indigo-500">
-              <h3 class="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 break-words">{{ b.nome }}</h3>
-              <p class="mt-1 text-sm text-gray-600 group-hover:text-indigo-500">Valor investido: R$ {{ b.saldo }}</p>
-            </div>
-          </a>
+        <a href="{% url 'verBalancete' b.id %}" class="block group">
+          <div
+            class="p-4 bg-white rounded-lg shadow border border-neutral-300 hover:shadow-md transition-shadow group-hover:border-indigo-500">
+            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 break-words">{{ b.nome }}</h3>
+            <p class="mt-1 text-sm text-gray-600 group-hover:text-indigo-500">Valor investido: R$ {{ b.saldo }}</p>
+          </div>
+        </a>
         {% empty %}
-          <p class="text-gray-500">Nenhum balancete criado ainda.</p>
+        <p class="text-gray-500">Nenhum balancete criado ainda.</p>
         {% endfor %}
       </div>
     </div>
 
-    <!-- Formulário -->
     <div class="bg-white rounded-lg shadow-md p-8 flex flex-col w-full lg:w-1/2" style="height: 70vh;">
-      <!-- Logo -->
-      <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo" class="h-12 w-auto">
 
-      <!-- Título e descrição -->
-      <h2 class="mt-6 text-3xl font-bold text-gray-900">Criar balancete</h2>
-      <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
+      <div class="flex py-2 items-baseline justify-between">
+        <div>
+          <h2 class="mt-6 text-3xl font-bold text-gray-900">Criar balancete</h2>
+          <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
+        </div>
+        <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo"
+          class="h-12 w-auto">
+      </div>
 
-      <form class="space-y-6 py-2 overflow-y-auto" method="post" action="{% url 'criarBalancete' %}">
+      <form class="space-y-4 overflow-y-auto" method="post" action="{% url 'criarBalancete' %}">
         {% csrf_token %}
 
         <div class="mt-2">
@@ -71,7 +78,8 @@
         </div>
 
         <div>
-          <button type="submit" class="flex mt-10 rounded-md bg-indigo-600 px-6 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          <button type="submit"
+            class="flex mt-4 rounded-md bg-indigo-600 px-6 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
             Criar balancete
           </button>
         </div>
