@@ -37,7 +37,7 @@
                     <h2 class="text-xl font-bold text-gray-900">Receitas:</h2>
 
                     {% for r in receitas %}
-                    <div class="mt-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow p-4">
+                    <div class="mt-4 bg-white rounded-lg shadow border border-neutral-300 hover:shadow-md transition-shadow p-4">
                         <h3 class="text-lg font-semibold text-gray-900">Data de crédito: {{ r.dataCredito }}</h3>
                         <h3 class="text-lg font-semibold text-indigo-600">Valor creditado: R$ {{ r.valor }}</h3>
                         <p class="mt-2 text-sm text-gray-600">{{ r.descricao }}</p>
@@ -52,7 +52,7 @@
                     <h2 class="text-xl font-bold text-gray-900">Despesas:</h2>
 
                     {% for r in despesas %}
-                    <div class="mt-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow p-4">
+                    <div class="mt-4 bg-white rounded-lg shadow border border-neutral-300 hover:shadow-md transition-shadow p-4">
                         <h3 class="text-lg font-semibold text-gray-900">Data de débito: {{ r.dataCredito }}</h3>
                         <h3 class="text-lg font-semibold text-indigo-600">Valor debitado: R$ {{ r.valor }}</h3>
                         <p class="mt-2 text-sm text-gray-600">{{ r.descricao }}</p>

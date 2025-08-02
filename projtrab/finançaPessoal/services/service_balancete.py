@@ -8,7 +8,8 @@ class Service_Balancete:
     def listar_balancete(cls, user_id: int):
         usuario = Usuario.objects.get(id = user_id)
 
-        balancetes = Balancete.objects.filter(usuario = usuario)
+        balancetes = Balancete.objects.filter(usuario = usuario).order_by('-id')
+
 
         return {
             'balancetes':balancetes,
