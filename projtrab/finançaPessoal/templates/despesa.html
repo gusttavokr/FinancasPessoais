@@ -1,22 +1,21 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Criar receita
+Criar despesa
 {% endblock %}
 
 {% block content %}
-
 <div class="bg-gray-100">
     <div class="flex items-center justify-center min-h-screen">
         <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
             <div class="text-center">
                 <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo"
                     class="mx-auto h-12 w-auto">
-                <h2 class="mt-6 text-3xl font-bold text-gray-900">Criando receita</h2>
+                <h2 class="mt-6 text-3xl font-bold text-gray-900">Criando despesa</h2>
                 <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
             </div>
 
-            <form class="space-y-4 overflow-y-auto" method="post" action="{% url 'criarReceita' pk=balancete.id %}"> 
+            <form class="space-y-4 overflow-y-auto" method="post" action="{% url 'criarDespesa' pk=balancete.id %}"> 
                 {% csrf_token %}
 
                 <div class="mt-2">
@@ -28,11 +27,11 @@ Criar receita
                     </div>
                 </div>
                 <div class="mt-2">
-                    <label for="{{ form.dataCredito.id_for_label }}" class="block text-sm font-medium text-gray-700">
-                        {{ form.dataCredito.label }}
+                    <label for="{{ form.dataDebito.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        {{ form.dataDebito.label }}
                     </label>
                     <div class="mt-1">
-                        {{ form.dataCredito }}
+                        {{ form.dataDebito }}
                     </div>
                 </div>
                 <div class="mt-2">
@@ -47,7 +46,7 @@ Criar receita
                 <div class="flex justify-center">
                   <button type="submit"
                     class=" mb-4 mt-4 rounded-md bg-indigo-600 px-6 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    Criar receita
+                    Cadastrar
                   </button>
                 </div>
 

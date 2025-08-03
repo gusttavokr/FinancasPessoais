@@ -7,9 +7,9 @@
 <div class="bg-gray-100">
     <div class="flex items-center justify-start px-20 min-h-screen">
 
-        <div class="w-full p-8 bg-white rounded-lg shadow-md flex flex-col mt-10" style="height: 75vh;">
+        <div class="w-full p-8 bg-white rounded-lg shadow-md flex flex-col mt-20" style="height: 80vh;">
 
-            <div class="flex justify-end">
+            <div class="flex justify-between">
                 <a href="{% url 'criarReceita' balancete.id %}"
                     class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 z-10">
 
@@ -18,17 +18,30 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
 
-                    Registrar lançamento
+                    Registrar receita
+                </a>
+                <a href="{% url 'criarDespesa' balancete.id %}"
+                    class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 z-10">
+
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+
+                    Registrar despesa
                 </a>
             </div>
 
-            <h2 class="mt-6 text-3xl font-bold text-gray-900">{{ balancete.nome }}</h2>
+            <h2 class="mt-10 text-3xl font-bold text-gray-900">{{ balancete.nome }}</h2>
             <div class="flex justify-between">
                 <h2 class="mt-2 text-2xl font-bold text-indigo-600">Saldo atual: R$ {{ saldo }}</h2>
                 <h2 class="mt-2 text-2xl font-bold text-indigo-600">Meta do balancete: R$ {{ balancete.saldo }}</h2>
             </div>
-            <p class="mt-2 text-sm text-gray-600">{{ balancete.dataCriacao }}</p>
-            <p class="mt-2 text-sm text-gray-600">{{ balancete.descricao }}</p>
+            <div class="flex justify-start gap-2">
+                <p class="mt-2 text-sm text-gray-600">{{ balancete.dataCriacao }}</p>
+                <p class="mt-2 text-sm text-gray-600">-</p>
+                <p class="mt-2 text-sm text-gray-600">{{ balancete.descricao }}</p>
+            </div>
 
             <div class="flex gap-10">
 

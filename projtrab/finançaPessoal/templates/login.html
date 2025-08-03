@@ -5,8 +5,7 @@ Login
 {% endblock %}
 
 {% block content %}
-<!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
+
 <div class="bg-gray-100">
     <div class="flex items-center justify-center min-h-screen">
         <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
@@ -55,7 +54,7 @@ Login
 
             <p class="mt-6 text-center text-sm text-gray-600">
                 Não tem uma conta?
-                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Cadastre-se</a>
+                <a href="{% url 'cadastro' %}" class="font-medium text-indigo-600 hover:text-indigo-500">Cadastre-se</a>
             </p>
         </div>
     </div>

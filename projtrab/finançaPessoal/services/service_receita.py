@@ -1,5 +1,4 @@
-from ..models import Usuario, Balancete, Receita, Despesa
-from datetime import date
+from ..models import Receita
 from django.core.exceptions import ValidationError
 
 class ServiceReceita:

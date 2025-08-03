@@ -16,7 +16,6 @@ from .utils import formatarData
 
 class Usuario(User):
     Nome = models.CharField(max_length=500)
-    # email = models.CharField(max_length=500, verbose_name="E-mail")
     cpf = models.CharField(max_length=11, unique=True, verbose_name="CPF")
     endereco = models.CharField(max_length=1000, blank=True, null=True)
     dataNascimento = models.DateField()
@@ -24,19 +23,18 @@ class Usuario(User):
     def clean(self):
         erros = {}
 
-        if isinstance(self.dataNascimento, str):
-            try:
-                data_nasc = datetime.strptime(self.dataNascimento, "%Y-%m-%d").date()
-            except ValueError:
-                erros['dataNascimento'] = "Formato de data de nascimento inválido. Use AAAA-MM-DD."
-                data_nasc = None
-        else:
-            data_nasc = self.dataNascimento
-        if data_nasc and data_nasc > date.today():
-            erros['dataNascimento'] = "A data de nascimento não pode ser no futuro."
+        data_formatada = formatarData(self.dataNascimento)
+        if not data_formatada:
+            erros['dataNascimento'] = "Formato de data de nascimento inválido. Use AAAA-MM-DD."
 
-        if len(self.Nome) <= 3:
-            erros['nome'] = "O nome deve ter mais que 3 caracteres"
+        if self.dataNascimento:
+            hoje = date.today()
+            idade_minima = hoje.replace(year=hoje.year - 16)
+            if self.dataNascimento > idade_minima:
+                raise ValidationError({'dataNascimento': 'O usuário deve ter no mínimo 16 anos.'})
+
+        if len(self.Nome) <= 4:
+            erros['nome'] = "O nome deve ter mais que 4 caracteres"
         if len(self.cpf) != 11:
             erros['cpf'] = "O CPF deve ter 11 caracteres"
 
@@ -71,17 +69,12 @@ class Balancete(models.Model):
         if (self.saldo <= 0):
             erros['saldo'] = "O balancete precisa de um valor maior que 0!"
 
-        if isinstance(self.dataCriacao, str):
-            try:
-                data = datetime.strptime(self.dataCriacao, "%Y-%m-%d").date()
-            except ValueError:
-                erros['dataCriacao'] = "Formato de data de criação inválido. Use AAAA-MM-DD."
-                data = None
-        else:
-            data = self.dataCriacao
+        data_formatada = formatarData(self.dataCriacao)
+        if not data_formatada:
+            erros['dataCriacao'] = "Formato de data de criação inválido. Use AAAA-MM-DD."
 
-        if data and data > date.today():
-            erros['dataCriacao'] = "A data de criação não pode ser no futuro."
+        if data_formatada and data_formatada < date.today():
+            erros['dataCriacao'] = "A data de criação não pode ser no passado."
         
         if erros:
             raise ValidationError(erros)
@@ -147,12 +140,9 @@ class Despesa(models.Model):
         if (self.valor < 15):
             erros["valor"] = "O valor deve ser maior que 15"
 
-        if isinstance(self.dataDebito, str):
-            try:
-                data = datetime.strptime(self.dataDebito, "%Y-%m-%d").date()
-            except ValueError:
-                erros['dataDebito'] = "Formato de data de crédito inválido. Use AAAA-MM-DD."
-                data = None
+        data_formatada = formatarData(self.dataDebito)
+        if not data_formatada:
+            erros['dataDebito'] = "Formato de data de débito inválido. Use AAAA-MM-DD."
         
         if erros:
             raise ValidationError(erros)
