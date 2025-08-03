@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from datetime import date, datetime
+from .utils import formatarData
 # Create your models here.
 
 # Usuários
@@ -100,7 +101,7 @@ class Balancete(models.Model):
 
 class Receita(models.Model):
     balancete = models.ForeignKey(Balancete, on_delete=models.CASCADE, related_name='receitas')
-    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    valor = models.DecimalField(default=0, decimal_places = 2, max_digits=12)
     dataCredito = models.DateField(default=timezone.now)
     descricao = models.TextField(blank=True, null=True)
 
@@ -115,14 +116,9 @@ class Receita(models.Model):
         if (self.valor < 15):
             erros["valor"] = "O valor deve ser maior que 15"
 
-        if isinstance(self.dataCredito, str):
-            try:
-                data = datetime.strptime(self.dataCredito, "%Y-%m-%d").date()
-            except ValueError:
-                erros['dataCredito'] = "Formato de data de crédito inválido. Use AAAA-MM-DD."
-                data = None
-        else:
-            data = self.dataCredito
+        data_formatada = formatarData(self.dataCredito)
+        if not data_formatada:
+            erros['dataCredito'] = "Formato de data de crédito inválido. Use AAAA-MM-DD."
         
         if erros:
             raise ValidationError(erros)

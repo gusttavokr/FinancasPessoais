@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Criar receita
+{% endblock %}
+
+{% block content %}
+<!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
+<div class="bg-gray-100">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+            <div class="text-center">
+                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo"
+                    class="mx-auto h-12 w-auto">
+                <h2 class="mt-6 text-3xl font-bold text-gray-900">Criando receita</h2>
+                <p class="mt-2 text-sm text-gray-600">Gerencie suas finanças com facilidade</p>
+            </div>
+
+            <form class="space-y-4 overflow-y-auto" method="post" action="{% url 'criarReceita' pk=balancete.id %}"> 
+                {% csrf_token %}
+
+                <div class="mt-2">
+                    <label for="{{ form.valor.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        {{ form.valor.label }}
+                    </label>
+                    <div class="mt-1">
+                        {{ form.valor }}
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <label for="{{ form.dataCredito.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        {{ form.dataCredito.label }}
+                    </label>
+                    <div class="mt-1">
+                        {{ form.dataCredito }}
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <label for="{{ form.descricao.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        {{ form.descricao.label }}
+                    </label>
+                    <div class="mt-1">
+                        {{ form.descricao }}
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                  <button type="submit"
+                    class="mt-12 rounded-md bg-indigo-600 px-6 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Criar receita
+                  </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

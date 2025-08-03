@@ -1,5 +1,4 @@
 from django import forms
-from datetime import date
 from django.core.exceptions import ValidationError
 
 class LoginForm(forms.Form):
@@ -15,7 +14,7 @@ class LoginForm(forms.Form):
     )
     password = forms.CharField(
         max_length=12,
-        widget=forms.TextInput(attrs={
+        widget=forms.PasswordInput(attrs={
             'placeholder': 'Digite a sua senha:',
             'class': "mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
         }),

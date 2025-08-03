@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from ..services import service_balancete
-from .VAR import USER_ID
 from ..forms.formsBalancete import BalanceteForm
 
 class Index(View):
     def get(self, request):
-        user_id = USER_ID
+
+        user_id = request.session.get('usuario_id')
+        if not user_id:
+            return redirect('login')  # proteção se não estiver logado
+        
         service = service_balancete.Service_Balancete()
         context = service.listar_balancete(user_id)
         context["form"] = BalanceteForm()
@@ -15,7 +18,10 @@ class Index(View):
 
 class criarBalancete(View):
     def post(self, request):
-        user_id = USER_ID
+
+        user_id = request.session.get('usuario_id')
+        if not user_id:
+            return redirect('login')  # proteção se não estiver logado
 
         nome = request.POST.get("nome")
         valor = request.POST.get("valor")
@@ -24,7 +30,7 @@ class criarBalancete(View):
         service = service_balancete.Service_Balancete()
         balancete = service.criarBalancete(nome, valor, descricao, user_id)
 
-        return redirect("verBalancete", pk=balancete.pk)  
+        return render(request, "verBalancete.html", pk=balancete.pk)  
 
 
 class verBalancete(View):

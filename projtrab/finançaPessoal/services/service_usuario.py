@@ -8,13 +8,13 @@ class ServiceUsuario():
         try:
             usuario = Usuario.objects.get(cpf=cpf)
         except ObjectDoesNotExist:
-            print("Usuário não encontrado")
+            # print("Usuário não encontrado")
             return None
 
         if check_password(password, usuario.password):
-            print("Senha correta")
+            # print("Senha correta")
             return {"usuario": usuario}
         else:
-            print("Senha incorreta")
+            # print("Senha incorreta")
             return None
         

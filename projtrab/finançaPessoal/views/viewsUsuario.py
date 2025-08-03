@@ -1,11 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth import authenticate, login, logout
 from ..services import service_usuario
 from ..forms import formsLogin
 from django.contrib import messages
-
-
 
 class LoginView(View):
     def get(self, request):
@@ -25,4 +22,14 @@ class LoginView(View):
             messages.error(request, "CPF e senha inválidos")
             return render(request, 'login.html', {"form":form})
         else:
+            usuario = context["usuario"]  # pega o usuário do contexto
+            request.session['usuario_id'] = usuario.id  # salva o id na sessão
             return redirect('index')
+        
+class LogoutView(View):
+    def get(self, request):
+        """Remove as informações do usuário da sessão."""
+
+        request.session.flush()
+        form = formsLogin.LoginForm()
+        return render(request, "login.html", {"form":form})
