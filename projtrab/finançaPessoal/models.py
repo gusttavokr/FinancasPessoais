@@ -72,9 +72,6 @@ class Balancete(models.Model):
         data_formatada = formatarData(self.dataCriacao)
         if not data_formatada:
             erros['dataCriacao'] = "Formato de data de criação inválido. Use AAAA-MM-DD."
-
-        if data_formatada and data_formatada < date.today():
-            erros['dataCriacao'] = "A data de criação não pode ser no passado."
         
         if erros:
             raise ValidationError(erros)

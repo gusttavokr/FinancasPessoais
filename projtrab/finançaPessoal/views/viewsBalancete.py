@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from ..services import service_balancete
 from ..forms.formsBalancete import BalanceteForm
+from django.urls import reverse
 
 class Index(View):
     def get(self, request):
@@ -30,8 +31,7 @@ class criarBalancete(View):
         service = service_balancete.Service_Balancete()
         balancete = service.criarBalancete(nome, valor, descricao, user_id)
 
-        return render(request, "verBalancete.html", pk=balancete.pk)  
-
+        return redirect(reverse('verBalancete', kwargs={'pk': balancete.pk}))
 
 class verBalancete(View):
     def get(self, request, pk):
